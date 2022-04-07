@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Header } from "./components";
 import "./index.css";
-import App from "./App";
+
+const App = () => {
+  return <Header />;
+};
 
 ReactDOM.render(
   <React.StrictMode>
