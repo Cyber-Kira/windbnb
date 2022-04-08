@@ -8,7 +8,7 @@ interface Props {
 
 export const Search = ({ location, numOfGuests }: Props) => {
   return (
-    <div className="md:m-0 m-10 flex shadow-sm hover:shadow cursor-pointer rounded-2xl select-none transition-shadow">
+    <div className="md:m-0 m-10 flex shadow-md hover:shadow cursor-pointer rounded-2xl select-none transition-shadow">
       <div
         className={`flex flex-1 basis-auto justify-center items-center text-sm px-4 py-5 ${
           location ? "text-main" : "text-gray"
