@@ -3,8 +3,16 @@ import ReactDOM from "react-dom";
 import { Header } from "./components";
 import "./index.css";
 
+import stays from "./data/stays.json";
+import { Bookings } from "./components/Bookings";
+
 const App = () => {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <Bookings stays={stays} />
+    </>
+  );
 };
 
 ReactDOM.render(

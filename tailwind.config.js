@@ -10,6 +10,9 @@ module.exports = {
         textLighter: "#4F4F4F",
         textLightest: "#828282",
       },
+      fontFamily: {
+        main: ["Montserrat"],
+      },
     },
   },
   plugins: [],
