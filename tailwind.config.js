@@ -9,9 +9,14 @@ module.exports = {
         main: "#333333",
         textLighter: "#4F4F4F",
         textLightest: "#828282",
+        buttonColor: "#EB5757E5",
       },
       fontFamily: {
         main: ["Montserrat"],
+        secondary: ["Mulish"],
+      },
+      fontSize: {
+        xxs: ["9px"],
       },
     },
   },
