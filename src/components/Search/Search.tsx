@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import { SearchPanelContext, SearchPanelInterface } from "../..";
 
 interface Props {
   location?: string;
@@ -7,8 +8,15 @@ interface Props {
 }
 
 export const Search = ({ location, numOfGuests }: Props) => {
+  const { setSearchPanelStatus } = useContext(
+    SearchPanelContext
+  ) as SearchPanelInterface;
+
   return (
-    <div className="md:m-0 m-10 flex shadow-md hover:shadow cursor-pointer rounded-2xl select-none transition-shadow">
+    <div
+      onClick={() => setSearchPanelStatus(true)}
+      className="md:m-0 m-10 flex shadow-md hover:shadow cursor-pointer rounded-2xl select-none transition-shadow"
+    >
       <div
         className={`flex flex-1 basis-auto justify-center items-center text-sm px-4 py-5 ${
           location ? "text-main" : "text-gray"

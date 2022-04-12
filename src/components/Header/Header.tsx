@@ -10,7 +10,7 @@ export const Header = () => {
           <img src={logo} alt="Windbnb logo" />
         </a>
       </div>
-      <Search location="Helsinki, Finland" numOfGuests={4} />
+      <Search location={"123"} numOfGuests={1} />
     </div>
   );
 };

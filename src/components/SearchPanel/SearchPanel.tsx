@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import stays from "../../data/stays.json";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { SearchPanelContext, SearchPanelInterface } from "../..";
 
 export const SearchPanel = () => {
   const [locationValue, setLocationValue] = useState("");
   const [guestsValue, setGuestsValue] = useState("");
   const [locations, setLocations] = useState<string[]>([]);
+  const { searchPanelStatus, setSearchPanelStatus } = useContext(
+    SearchPanelContext
+  ) as SearchPanelInterface;
 
   const populateLocations = (filterString: string) => {
     const staysLocations = stays.map(
@@ -44,13 +48,16 @@ export const SearchPanel = () => {
   });
 
   return (
-    <>
+    <div className={`${searchPanelStatus ? "" : "hidden"}`}>
       <form className="fixed top-0 right-0 p-4 z-10 w-screen h-5/6 bg-white">
         <div className="flex items-center mb-4">
           <p className="md:hidden font-secondary font-bold text-xs leading-4">
             Edit your search
           </p>
-          <div className="relative ml-auto w-8 h-8 cursor-pointer flex items-center justify-center after:absolute after:left-4 after:h-5 after:w-px after:bg-black after:rotate-45 after:rounded before:absolute before:left-4 before:h-5 before:w-px before:bg-black before:-rotate-45 before:rounded"></div>
+          <div
+            onClick={() => setSearchPanelStatus(false)}
+            className="relative ml-auto w-8 h-8 cursor-pointer flex items-center justify-center after:absolute after:left-4 after:h-5 after:w-px after:bg-black after:rotate-45 after:rounded before:absolute before:left-4 before:h-5 before:w-px before:bg-black before:-rotate-45 before:rounded"
+          ></div>
         </div>
         <div className="rounded-xl flex flex-col shadow-md">
           <label className="block border-b-2 border-light px-6 py-3">
@@ -101,6 +108,6 @@ export const SearchPanel = () => {
         <div className="mt-9 max-h-50 overflow-auto">{locationsElement}</div>
       </form>
       <div className="absolute inset-0 backdrop-brightness-75 backdrop-blur-sm"></div>
-    </>
+    </div>
   );
 };

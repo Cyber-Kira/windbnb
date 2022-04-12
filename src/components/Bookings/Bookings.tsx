@@ -8,8 +8,6 @@ interface BookingsInterface {
 
 export const Bookings = ({ stays, filterString = ".*" }: BookingsInterface) => {
   const regex = new RegExp(`\\b${filterString}\\b`, "i");
-  console.log(regex);
-
   const bookings = stays
     .filter((stay) => filterString && stay.city.match(regex))
     .map((stay) => {
