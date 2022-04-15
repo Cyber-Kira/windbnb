@@ -12,6 +12,13 @@ export interface SearchPanelInterface {
   setSearchPanelStatus: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export interface SearchInterface {
+  location: string;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+  guests: number;
+  setGuests: React.Dispatch<React.SetStateAction<number>>;
+}
+
 export const SearchPanelContext =
   React.createContext<SearchPanelInterface | null>(null);
 

@@ -26,13 +26,7 @@ export const SearchPanel = () => {
       (value) => `${value.city}, ${value.country}`
     );
 
-    setLocations([
-      ...new Set(
-        staysLocations.filter((item) =>
-          item.toLowerCase().includes(filterString.toLowerCase())
-        )
-      ),
-    ]);
+    setLocations([...new Set(staysLocations)]);
   };
 
   const resetChildrenCounters = () => {
@@ -164,7 +158,11 @@ export const SearchPanel = () => {
           </div>
         </div>
       </form>
-      <div className="absolute inset-0 backdrop-brightness-75 backdrop-blur-sm"></div>
+      <div
+        className={`absolute inset-0 backdrop-brightness-75 backdrop-blur-sm ${
+          searchPanelStatus ? "" : "hidden"
+        }`}
+      ></div>
     </div>
   );
 };
