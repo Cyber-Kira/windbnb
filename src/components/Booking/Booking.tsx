@@ -7,7 +7,7 @@ export interface BookingInteface {
   superHost?: boolean;
   title: string;
   rating?: number;
-  maxGuests?: number;
+  maxGuests: number;
   type: string;
   beds: number | null;
   photo?: string;

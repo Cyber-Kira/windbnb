@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SearchPanelDataContext, SearchPanelDataInterface } from "../..";
 import { Booking, BookingInteface } from "../Booking";
 
 interface BookingsInterface {
@@ -6,13 +7,30 @@ interface BookingsInterface {
   filterString?: string;
 }
 
-export const Bookings = ({ stays, filterString = ".*" }: BookingsInterface) => {
-  const regex = new RegExp(`\\b${filterString}\\b`, "i");
+export const Bookings = ({ stays, filterString }: BookingsInterface) => {
+  const regex = new RegExp(`\\b${filterString?.split(", ").join("|")}\\b`, "i");
+  const { guestsValue } = useContext(
+    SearchPanelDataContext
+  ) as SearchPanelDataInterface;
   const bookings = stays
-    .filter((stay) => filterString && stay.city.match(regex))
+    .filter(
+      (stay) =>
+        (filterString === "" ? ".*" : filterString) &&
+        stay.city.match(regex) &&
+        stay.maxGuests > +guestsValue
+    )
     .map((stay) => {
-      const { superHost, title, rating, type, beds, photo, city, country } =
-        stay;
+      const {
+        superHost,
+        title,
+        rating,
+        type,
+        beds,
+        photo,
+        city,
+        country,
+        maxGuests,
+      } = stay;
 
       return (
         <Booking
@@ -25,6 +43,7 @@ export const Bookings = ({ stays, filterString = ".*" }: BookingsInterface) => {
           type={type}
           beds={beds}
           photo={photo}
+          maxGuests={maxGuests}
         />
       );
     });

@@ -3,8 +3,8 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { SearchPanelContext, SearchPanelInterface } from "../..";
 
 interface Props {
-  location?: string;
-  numOfGuests?: number;
+  location: string;
+  numOfGuests: string;
 }
 
 export const Search = ({ location, numOfGuests }: Props) => {
@@ -15,16 +15,20 @@ export const Search = ({ location, numOfGuests }: Props) => {
   return (
     <div
       onClick={() => setSearchPanelStatus(true)}
-      className="md:m-0 m-10 flex shadow-md hover:shadow cursor-pointer rounded-2xl select-none transition-shadow"
+      className="md:m-0 m-4 flex shadow-md hover:shadow cursor-pointer rounded-2xl select-none transition-shadow"
     >
       <div
-        className={`flex flex-1 basis-auto justify-center items-center text-sm px-4 py-5 ${
+        className={`flex flex-1 basis-auto justify-center items-center min-w-fit text-sm px-4 py-5 ${
           location ? "text-main" : "text-gray"
         } border-r border-light`}
       >
         {location ? location : "Add location"}
       </div>
-      <div className="flex flex-1 basis-auto justify-center items-center text-sm px-4 py-5 text-gray border-r border-light">
+      <div
+        className={`flex flex-1 basis-auto justify-center items-center text-sm min-w-fit px-4 py-5 ${
+          numOfGuests ? "text-main" : "text-gray"
+        } border-r border-light`}
+      >
         {numOfGuests ? numOfGuests : "Add"} guests
       </div>
       <div className="flex flex-inherit justify-center items-center px-4 py-5">

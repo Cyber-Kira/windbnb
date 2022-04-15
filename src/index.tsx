@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Header } from "./components";
 import "./index.css";
 
@@ -15,25 +15,43 @@ export interface SearchPanelInterface {
 export const SearchPanelContext =
   React.createContext<SearchPanelInterface | null>(null);
 
+export interface SearchPanelDataInterface {
+  locationValue: string;
+  guestsValue: string;
+  setLocationValue: React.Dispatch<React.SetStateAction<string>>;
+  setGuestsValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchPanelDataContext =
+  React.createContext<SearchPanelDataInterface | null>(null);
+
 const App = () => {
   const [searchPanelStatus, setSearchPanelStatus] = useState<boolean>(false);
+  const [locationValue, setLocationValue] = useState("");
+  const [guestsValue, setGuestsValue] = useState("");
 
   return (
     <>
       <SearchPanelContext.Provider
         value={{ searchPanelStatus, setSearchPanelStatus }}
       >
-        <Header />
-        <Bookings stays={stays} />
-        <SearchPanel />
+        <SearchPanelDataContext.Provider
+          value={{
+            locationValue,
+            setLocationValue,
+            guestsValue,
+            setGuestsValue,
+          }}
+        >
+          <Header />
+          <Bookings stays={stays} filterString={locationValue} />
+          <SearchPanel />
+        </SearchPanelDataContext.Provider>
       </SearchPanelContext.Provider>
     </>
   );
 };
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(<App />);
